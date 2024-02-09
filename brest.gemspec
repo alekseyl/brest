@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["alekseyl"]
   spec.email = ["leshchuk@gmail.com"]
 
-  spec.summary = "Declarative REST-api multifunctional tool for REST-APIs"
-  spec.description = "Declarative REST-api multifunctional tool for REST-APIs whenever ActiveRecord is used"
+  spec.summary = "B(etter)REST. Declarative REST-api + swagger documentation generator alongside with ORM optimizers. Sweeties and goodies for your REST-APIs"
+  spec.description = "B(etter)REST. Declarative REST-api + swagger documentation generator alongside with ORM optimizers. Sweeties and goodies for your REST-APIs"
   spec.homepage = "https://github.com/alekseyl/brest"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
@@ -32,8 +32,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency "swagger-blocks", "~> 3.0"
+  spec.add_dependency "activerecord", ">= 6.1"
 
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
+  spec.add_development_dependency "mini-apivore"
+  spec.add_development_dependency "appraisal"
+  spec.add_development_dependency "rails", ">= 6.1"
+
 end
