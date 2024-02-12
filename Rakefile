@@ -5,14 +5,14 @@ require "rake/testtask"
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
   t.libs << "lib"
-  t.test_files = FileList["test/test_application/test/**/*_test.rb"]
+  t.test_files = FileList["test/integration/**/*_test.rb", ]
 end
 
 require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
 
-load "test/test_application/Rakefile"
+load "test/dummy/Rakefile"
 
 task default: %i[test rubocop]
 
