@@ -1,6 +1,8 @@
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 
-require_relative "../config/environment"
+require File.expand_path('../test/test_application/config/environment.rb', __dir__)
+ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '../test/test_application'
+
 require "rails/test_help"
 require "minitest/autorun"
 require_relative "mini_apivore_test_base"

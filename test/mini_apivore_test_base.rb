@@ -9,8 +9,8 @@ class MiniApivoreTestBase < ActionDispatch::IntegrationTest
   # for all we need redefine original swagger_checker
   def swagger_checker; SWAGGER_CHECKERS[MiniApivoreTestBase] end
 
-  def check_route(verb, path, expected_response_code, params = {})
-     super(verb, path, expected_response_code, params ) && response
+  def check_route(verb, path, expected_response_code, **params)
+     super(verb, path, expected_response_code, **params ) && response
   end
 
   def prepare_error_backtrace

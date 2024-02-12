@@ -1,5 +1,4 @@
-class PromosApiDoc
-  include Swagger::Blocks
+class PromosApiDoc < DocBase
 
   module SinglePromotionResponse
     def self.extended(base)

@@ -10,11 +10,11 @@ class PromotionApiTest < MiniApivoreTestBase
   end
 
   def __create_promotion( expectation, params )
-    check_route( :post, '/promotions.json', expectation, params)
+    check_route( :post, '/promotions.json', expectation, **params)
   end
 
   def __get_promotions( expectation, params )
-    check_route( :get, '/promotions.json', expectation, params)
+    check_route( :get, '/promotions.json', expectation, **params)
   end
 
   def __update_promotion( id, expectation, params )

@@ -1,5 +1,4 @@
-class ItemsApiDoc
-  include Swagger::Blocks
+class ItemsApiDoc < DocBase
 
   module SingleItemResponse
     def self.extended(base)

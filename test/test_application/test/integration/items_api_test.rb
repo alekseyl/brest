@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class ItemsApiTest < MiniApivoreTestBase
   
   # ----------------------------
@@ -8,11 +10,11 @@ class ItemsApiTest < MiniApivoreTestBase
   end
 
   def __create_item( expectation, params )
-    check_route( :post, '/items.json', expectation, params)
+    check_route( :post, '/items.json', expectation, **params)
   end
 
   def __get_items( expectation, params )
-    check_route( :get, '/items.json', expectation, params)
+    check_route( :get, '/items.json', expectation, **params)
   end
 
   def __update_item( id, expectation, params )

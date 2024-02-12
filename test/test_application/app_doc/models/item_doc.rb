@@ -1,5 +1,4 @@
-class ItemDoc
-  include Swagger::Blocks
+class ItemDoc < DocBase
 
   swagger_schema :ItemUpdate, required: [:price],
                  description: 'Editable item schema part' do

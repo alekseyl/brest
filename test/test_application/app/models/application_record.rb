@@ -1,6 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
-  extend ::Swaggerizer::ActiveRecordSwaggerizer
+  include ::Swaggerizer::ActiveRecordSwaggerizer
   include ::Swaggerizer::AsJsonSwaggerized
 
   scope :paginate, -> (per_page, page = 0) {

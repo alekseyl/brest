@@ -1,5 +1,4 @@
-class PromoDoc
-  include Swagger::Blocks
+class PromoDoc < DocBase
 
   swagger_schema :PromotionInput, required: [:active, :open, :pattern, :title],
                  description: 'Promo creation and update attributes' do

@@ -1,4 +1,4 @@
-FROM ruby:2.6.5-buster
+FROM ruby:3.3-bullseye
 
 WORKDIR /app
 
@@ -29,5 +29,5 @@ RUN  apt-get update && apt-get -y install autoconf \
                                          zlib1g \
                                          zlib1g-dev
 
-COPY Gemfil* /app/
-RUN  gem install bundler && bundle install
+#COPY Gemfil* /app/
+#RUN  gem install bundler && bundle install
