@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "appraisal"
   spec.add_development_dependency "minitest-rails"
   spec.add_development_dependency "rails", ">= 6.1"
-  spec.add_development_dependency "ruby_jard"
+  spec.add_development_dependency "byebug"
   spec.add_development_dependency "pg"
 
 end
