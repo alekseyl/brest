@@ -46,8 +46,11 @@ class ApidocsController < ActionController::Base
   SWAGGERED_CLASSES = [
     ItemDoc,
     PromoDoc,
+    UserDoc,
+    UserStatsDoc,
     ItemsApiDoc,
     PromosApiDoc,
+    UsersApiDoc,
     self,
   ].freeze
 

@@ -2,6 +2,7 @@
 
 require_relative "brest/version"
 require_relative "brest/swaggerizer"
+require_relative "brest/store_model_jsonb"
 require_relative "brest/swaggerizer/parameters"
 require_relative "brest/swaggerizer/swagger_blocks_ext"
 require_relative "brest/swaggerizer/blocks/helpers"

@@ -41,5 +41,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rails", ">= 6.1"
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "pg"
+  spec.add_development_dependency 'store_model'
+  spec.add_development_dependency 'enum_ext'
+  spec.add_development_dependency 'warden'
+  spec.add_development_dependency 'rails_sql_prettifier'
 
 end

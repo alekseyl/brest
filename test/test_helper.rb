@@ -22,3 +22,5 @@ class ActiveSupport::TestCase
   end
   # Add more helper methods to be used by all tests here...
 end
+
+def log_ar; ActiveRecord::Base.logger = Logger.new(STDOUT) end

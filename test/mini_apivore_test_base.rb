@@ -1,6 +1,7 @@
 require 'mini_apivore'
 
 class MiniApivoreTestBase < ActionDispatch::IntegrationTest
+  include ::Warden::Test::Helpers
   include MiniApivore
 
   init_swagger('/apidocs.json', ApplicationRecord.swagger )

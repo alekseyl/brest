@@ -5,6 +5,7 @@ class ItemsApiTest < MiniApivoreTestBase
   # ----------------------------
   # Items Routes check helpers 
   # ----------------------------
+
   def __get_item( id, expectation )
     check_route( :get, '/items/{id}.json', expectation, id: id)
   end
@@ -24,6 +25,7 @@ class ItemsApiTest < MiniApivoreTestBase
   def __delete_item(id, expectation)
     check_route( :delete, '/items/{id}.json', expectation, id: id )
   end
+
   # ----------------------------
   # Items Routes check helpers END
   # ----------------------------
@@ -36,14 +38,14 @@ class ItemsApiTest < MiniApivoreTestBase
 
   test 'UNPROCESSABLE ENTITY for item update' do
     __update_item( identify(:mug), UNPROCESSABLE_ENTITY, _data: {item: {price: -10}} )
-    # we should not only match unprocesable expectations but also what did go wrong
+    # we should not only match unprocessable expectations but also what did go wrong
     # to be sure, we are not shadowing other errors
     assert_equal( error_os.messages.price, ['Price should be positive number!'] )
   end
 
   test 'UNPROCESSABLE ENTITY for item CREATE' do
     __create_item( UNPROCESSABLE_ENTITY, _data: { item: { price: 99.9, code: 'tshirt' } } )
-    # we should not only match unprocesable expectations but also what did go wrong
+    # we should not only match unprocessable expectations but also what did go wrong
     # to be sure, we are not shadowing other errors
     assert_equal( error_os.messages.name, ["can't be blank"] )
   end
@@ -78,7 +80,7 @@ class ItemsApiTest < MiniApivoreTestBase
   end
 
   test 'CREATE item OK' do
-    assert_difference( -> {Item.count} ) {
+    assert_difference( -> { Item.count } ) {
       __create_item( OK, _data: { item: { price: 99.9, name: 'black tshirt', code: 'tshirt' } })
     }
     assert_equal( data_os.item.code, 'tshirt' )

@@ -26,12 +26,17 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 Bug reports and pull requests are welcome on GitHub at https://github.com/alekseyl/brest. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/alekseyl/brest/blob/master/CODE_OF_CONDUCT.md).
 
 ## TODO
+- [ ] ActiveStorage helpers for eager_loading 
+- [ ] Replace '$ref' => :Model, with model: :Model   
 - [ ] Multiple schemas aka versions
 - [ ] Multiple ORM adapters.
    - [ ] Separate ActiveRecord adapter from preparation stuff
    - [ ] Introduce sequel adapter 
    - [ ] Move activerecord to dev_dependencies and add check on any of supported ORMs presence 
 - [ ] Allow nested selections in included model.
+- [ ] Cover with test all extensions related to synthetic attributes, jsonb models e.t.c. 
+- [ ] Better api definitions helpers ( in body params + allowing schema to be mentioned in parameter function, right now its a pretty messed up with the blank names params e.t.c. )
+- [ ] Examine schema with validators and ensure no swagger-ui hacks are used anymore, swagger UI is a messed up outdated thingy, use Postman instead.
 
 ## License
 

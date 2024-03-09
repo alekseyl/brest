@@ -9,9 +9,14 @@ require "action_controller/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
 require "brest"
 require 'byebug'
+require 'store_model'
+require 'enum_ext'
+require 'warden'
 require 'swagger/blocks'
+require 'rails_sql_prettifier'
 
 module BrestTest
   class Application < Rails::Application

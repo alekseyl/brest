@@ -17,14 +17,16 @@ class ItemsApiDoc < DocBase
                    tags: ['items'] ) do
 
 
-    parameter name: '',
+    parameter name: :item,
               in: :body,
               description: '',
               required: true do
+
       schema do
-        property :item, type: :object, '$ref' => :ItemInput
+        key :'$ref', :ItemInput
       end
     end
+
 
     extend SingleItemResponse
     extend SwaggerResponses::UnprocessableEntity

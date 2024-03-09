@@ -14,6 +14,11 @@ ActiveRecord::Schema[7.1].define(version: 2021_10_21_142811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "code", limit: 2
     t.string "name"
@@ -32,6 +37,15 @@ ActiveRecord::Schema[7.1].define(version: 2021_10_21_142811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pattern"], name: "index_promotions_on_pattern", where: "active", using: :gin
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "membership", limit: 2
+    t.jsonb "stats"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

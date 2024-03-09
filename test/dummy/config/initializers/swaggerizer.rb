@@ -2,10 +2,13 @@
 # require 'swagger_blocks'
 require 'brest'
 
+StoreModel::Model.include(StoreModelJsonb)
+
 ::Swaggerizer.extend_swagger_blocks_dsl
 
 Rails.application.config.after_initialize do
   ApplicationRecord.swaggerize(schema: ApidocsController.build_schema)
   ActionController::Parameters.prepend(Swaggerizer::Parameters)
 end
+
 
