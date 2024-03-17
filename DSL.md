@@ -55,9 +55,23 @@ There are also some sugar to REST-API definitions:
 
 # Integration examples
 
-Lets say we have model User with avatar attached as a nested model.
-Lets start with a swagger-schema definition for this case:
+Lets say we have next models structure 
 
+```
+Admin
+
+      Account ( nested_atributes  )
+         |
+      User ( jsonb + arrays )
+      /  |  \
+( mtm bought_items )
+      \  |  /
+       Item ( s3 images / video, synthetic, includes + nested select on Comment )
+          \__Comments (jsonb)
+          
+```
+
+Lets start with a swagger-schema definition for this case:
 ```ruby
 class UserDoc
 

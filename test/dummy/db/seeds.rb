@@ -9,6 +9,3 @@
 Item.create( code: 'mug', name: 'White mug', price: 6.0 )
 Item.create( code: 'tshirt', name: 'Smiley face tshirt', price: 15.0 )
 Item.create( code: 'hoodie', name: 'Pokemon hoodie', price: 20.0 )
-
-Promotion.create( title: '2-for-1 (MUGS)', pattern: ['mug'], free_stuff: ['mug'], open: false, active: true )
-Promotion.create( title: '30% on 3 or more tshirts', pattern: %w[tshirt tshirt tshirt], discount: 30, open: true, active: true )
