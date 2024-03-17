@@ -110,7 +110,6 @@ Controllers integrations
     # alternative way of doing things:
     #  render json: { users: User.all.swaggerize_output(:User) }
     
-    
     def create
       @user = User.create(user_params)
       render json: { user: @user.as_json(:User) }, status: :ok

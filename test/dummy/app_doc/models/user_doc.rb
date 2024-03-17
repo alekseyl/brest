@@ -14,12 +14,14 @@ class UserDoc < DocBase
   end
 
   inherit_schema :UserPreview, :UserCreate, required: [:id], description: 'Users preview for a feed' do
-    property :id, type: :integer, description: 'Item id'
+    property :id, type: :integer, description: 'User id'
     property :membership, type: :string, enum: User.memberships.keys, description: 'Membership status.'
   end
 
   inherit_schema :User, :UserPreview, description: 'Full User data model' do
     property :stats, type: :jsonb, '$ref' => :UserStats, description: 'User statistics'
+
+    array :bought_items, :Item, description: "Bought Items with attributes"
   end
 
   inherit_schema :UserFullRepresentation, :UserPreview,

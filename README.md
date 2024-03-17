@@ -26,16 +26,26 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 Bug reports and pull requests are welcome on GitHub at https://github.com/alekseyl/brest. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/alekseyl/brest/blob/master/CODE_OF_CONDUCT.md).
 
 ## TODO
-- [ ] ActiveStorage helpers for eager_loading 
-- [ ] Replace '$ref' => :Model, with model: :Model   
-- [ ] Multiple schemas aka versions
-- [ ] Multiple ORM adapters.
-   - [ ] Separate ActiveRecord adapter from preparation stuff
-   - [ ] Introduce sequel adapter 
-   - [ ] Move activerecord to dev_dependencies and add check on any of supported ORMs presence 
-- [ ] Allow nested selections in included model.
-- [ ] Cover with test all extensions related to synthetic attributes, jsonb models e.t.c. 
-- [ ] Better api definitions helpers ( in body params + allowing schema to be mentioned in parameter function, right now its a pretty messed up with the blank names params e.t.c. )
+
+- [ ] Major improvements
+  - [ ] Allow nested selections in included model.
+  - [ ] Multiple schemas aka versions
+  - [ ] Multiple ORM adapters.
+    - [ ] Separate ActiveRecord adapter from preparation stuff
+    - [ ] Introduce sequel adapter
+    - [ ] Move activerecord to dev_dependencies and add check on any of supported ORMs presence
+- [ ] DSL improvements
+  - [ ] ActiveStorage helpers for preloading
+  - [ ] Replace '$ref' => :Model, with model: :Model
+  - [ ] Better api definitions helpers ( in body params + allowing schema to be mentioned in parameter function, right now its a pretty messed up with the blank names params e.t.c. )
+- [ ] Test coverage improvements (Cover with test all extensions related to synthetic attributes, jsonb models e.t.c.)
+  - [ ] Rethink data structures and relations
+  - [x] jsonb
+  - [x] includes_sw
+  - [ ] injectable attributes
+  - [ ] select_sw
+  - [ ] select_sw nested
+  - [ ] synthetic attributes
 - [ ] Examine schema with validators and ensure no swagger-ui hacks are used anymore, swagger UI is a messed up outdated thingy, use Postman instead.
 
 ## License

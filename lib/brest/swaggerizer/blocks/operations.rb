@@ -30,43 +30,10 @@ module Swaggerizer
           enum: enum)
       end
 
-      def in_org_namespace; path_id(:org_id, "Organization numeric id") end
-
-      def in_common_type_namespace(only_types = nil)
-        parameter(name: :common_type,
-          in: :path,
-          description: "Выбрать неймспейс карточек",
-          required: true,
-          type: :string,
-          enum: only_types || Card::COMMON_TYPE_NAMESPACES)
-      end
-
-      def in_common_type_namespace_taskless
-        parameter(name: :common_type,
-          in: :path,
-          description: "Выбрать неймспейс карточек",
-          required: true,
-          type: :string,
-          enum: Card::COMMON_TYPE_NAMESPACES - ["tasks"])
-      end
-
-      def in_task_id_namespace(route_limitation: [])
-        path_id(:task_id, "Task local to space numeric id.", route_limitation)
-      end
-
-      def in_task_action_uuid_namespace; path_id(:uuid, "Task action uuid") end
-
-      def in_space_namespace; path_id(:space_id, "Space numeric id") end
-
-      def in_card_namespace(route_limitation: []); path_id(:card_id, "Card numeric id!", route_limitation) end
-
       def add_path_params(path)
-        in_org_namespace     if path.match?("org/{org_id}")
-        in_space_namespace   if path.match?("spaces/{space_id}")
-        path_id              if path.match?("{id}")
-        in_card_namespace    if path.match?("cards/{card_id}")
-        in_task_id_namespace if path.match?("tasks/{task_id}")
+        path_id if path.match?("{id}")
       end
+
     end
   end
 end

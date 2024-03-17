@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    render_ok( items: Item.paginate(per_page, current_page).as_json(:Item) )
+    render_ok( items: Item.paginate(per_page, current_page).order(:id).as_json(:Item) )
   end
 
   # GET /items/1

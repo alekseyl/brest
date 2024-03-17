@@ -45,5 +45,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'enum_ext'
   spec.add_development_dependency 'warden'
   spec.add_development_dependency 'rails_sql_prettifier'
+  spec.add_development_dependency 'bullet'
 
 end

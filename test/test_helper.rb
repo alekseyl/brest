@@ -4,6 +4,7 @@ require File.expand_path('dummy/config/environment.rb', __dir__)
 
 require "rails/test_help"
 require "minitest/autorun"
+require "bullet"
 require_relative "mini_apivore_test_base"
 
 class ActiveSupport::TestCase

@@ -5,6 +5,11 @@ mug:
   name: MUG
   price: 6.00
 
+mug_1:
+  code: mug
+  name: Shire forever
+  price: 10.00
+
 tshirt:
   code: tshirt
   name: FOREVER

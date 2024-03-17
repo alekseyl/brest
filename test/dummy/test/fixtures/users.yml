@@ -4,6 +4,9 @@ frodo:
   name: Frodo
   email: frd@shire.com
   membership: :basic
+  bought_items:
+    - mug
+    - mug_1
   stats:
     admin_comment: "Mug lover"
     total_money_spent: 100

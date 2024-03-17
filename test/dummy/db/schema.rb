@@ -27,6 +27,11 @@ ActiveRecord::Schema[7.1].define(version: 2021_10_21_142811) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "items_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+  end
+
   create_table "promotions", force: :cascade do |t|
     t.string "title"
     t.boolean "active", default: true

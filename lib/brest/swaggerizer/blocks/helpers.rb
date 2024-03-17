@@ -24,8 +24,8 @@ module Swaggerizer
 
       module TimeStamps
         def timestamps_properties
-          property(:created_at,        type: :string, format: :dateTime)
-          property(:updated_at,        type: :string, format: :dateTime)
+          property(:created_at, type: :string, format: :dateTime)
+          property(:updated_at, type: :string, format: :dateTime)
         end
       end
 
@@ -51,14 +51,6 @@ module Swaggerizer
           end
         end
         # rubocop:enable Lint/UnderscorePrefixedVariableName
-      end
-
-      module TagsIdsList
-        def tags_list
-          property(:tag_ids, type: :array, description: "Числовые Id тэгов.") do
-            items(type: :integer, format: :int64)
-          end
-        end
       end
 
       module SyntheticAttributes
@@ -98,11 +90,11 @@ module Swaggerizer
       def self.add_helpers_to_swagger_blocks
         ::Swagger::Blocks::Nodes::ResponseNode.prepend(ResponseSchema)
 
-        ::Swagger::Blocks::Nodes::PropertyNode.include(TagsIdsList, TimeStamps)
+        ::Swagger::Blocks::Nodes::PropertyNode.include(TimeStamps)
         ::Swagger::Blocks::Nodes::PropertyNode.prepend(ArrayShortCut, JSONB, SyntheticAttributes,
           ForeignRelationAttributes, InjectableProperty)
 
-        ::Swagger::Blocks::Nodes::SchemaNode.include(TagsIdsList, TimeStamps)
+        ::Swagger::Blocks::Nodes::SchemaNode.include(TimeStamps)
         ::Swagger::Blocks::Nodes::SchemaNode.prepend(ArrayShortCut, JSONB, SyntheticAttributes,
           ForeignRelationAttributes, InjectableProperty)
       end
