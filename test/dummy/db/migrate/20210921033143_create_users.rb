@@ -9,6 +9,14 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
+    create_table :user_profiles do |t|
+      t.string :address
+      t.string :zip_code
+      t.string :bio
+
+      t.references :user
+    end
+
     create_table :admins do |t|
       t.string :name
       t.string :email

@@ -1,14 +1,25 @@
 class UserDoc < DocBase
+  # models hierarchy:
+  #      UserBase
+  #     |        \
+  # UserCreate   UserUpdate
+  #    |
+  # UserPreview
+  #   |
+  # User
+  #   |
+  # UserAdminView
 
-  swagger_schema :UserUpdate, required: [:name],
-                 description: 'Editable user schema part' do
-
+  swagger_schema :UserBase, required: [:name], description: 'Editable user schema part' do
     property :name, type: :string, description: 'User name'
-
   end
 
-  inherit_schema :UserCreate, :UserUpdate, required: [:email, :name],
-                 description: 'User model immutable part' do
+  inherit_schema :UserUpdate, :UserBase, required: [:name], description: 'User model updatable part, with nested attrs' do
+    property :user_profile_attributes, type: :UserProfileInput, description: 'User profile nested attributes'
+  end
+
+  inherit_schema :UserCreate, :UserBase, required: [:email, :name],
+                 description: 'Updatable + immutable after creation parts' do
 
     property :email, type: :string, description: 'User email'
   end
@@ -20,12 +31,14 @@ class UserDoc < DocBase
 
   inherit_schema :User, :UserPreview, description: 'Full User data model' do
     property :stats, type: :jsonb, '$ref' => :UserStats, description: 'User statistics'
+    property :user_profile, type: :UserProfile, description: 'User full profile'
 
     array :bought_items, :Item, description: "Bought Items with attributes"
   end
 
-  inherit_schema :UserFullRepresentation, :UserPreview,
+  inherit_schema :UserAdminView, :UserPreview,
                  description: 'Full User data model with admin hidden  comment in jsonb' do
+
     property :stats, type: :jsonb, '$ref' => :UserStatsWithHiddenAttribute, description: 'User statistics full'
   end
 end

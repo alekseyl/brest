@@ -35,6 +35,7 @@ A closer integration with a swagger schema and ORMs provides a given set of exte
 # Additional swagger-blocks helpers and adjustments:
 
 - schemas inheritance with method inherit_schema
+- extended sugared property definition: type could point directly to model without '$ref' key verbosity
 - **array** — schema helper for a quick array definition 
   - **only_in_schema** — is an additional extended attribute for special array cases when there is a different attribute 
   in a different model with same naming and we need to differ them during permit_schemas generations phase ( to permit array we need for permitted value to be an array ). Should be set to schema name, go to TaskStats schema and search for blocked attribute definition to see the example. 
@@ -55,14 +56,12 @@ There are also some sugar to REST-API definitions:
 
 # Integration examples
 
-Lets say we have next models structure 
+Lets say we have next models structure, with a set on features mentioned on the graph
 
 ```
 Admin
 
-      Account ( nested_atributes  )
-         |
-      User ( jsonb + arrays )
+      User ( jsonb + arrays + nested attributes ) -- UserProfile
       /  |  \
 ( mtm bought_items )
       \  |  /
@@ -71,42 +70,47 @@ Admin
           
 ```
 
-Lets start with a swagger-schema definition for this case:
+Look for full swagger definition in folder [test/dummy/app_doc](./test/dummy/app_doc).
+Api routes are defined in [test/dummy/app_doc/api folder](./test/dummy/app_doc/api).
+Models are defined in [test/dummy/app_doc/models folder](./test/dummy/app_doc/models).
+
+Example of a model definition
+
 ```ruby
-class UserDoc
+class UserDoc < DocBase
 
-    include Swagger::Blocks
-    
-    swagger_schema :UserBase, required: [:name, :last_name] do
-        property :name, type: :string
-        property :last_name, type: :string
-        property :email, type: :string
-    end
+  swagger_schema :UserBase, required: [:name], description: 'Editable user schema part' do
+    property :name, type: :string, description: 'User name'
+  end
 
-    inherit_schema :UserInput, :UserBase, required: [:id, :email] do
-        property :avatar_attributes, type: :object, '$ref' => :FileInput
-    end
+  inherit_schema :UserUpdate, :UserBase, required: [:name], description: 'User model updatable part' do
+    property :user_profile_attributes, type: :UserProfileInput, description: 'User profile nested attributes'
+  end
 
-    inherit_schema :User, :UserBase, required: [:id, :email] do
-        property :id, type: :integer, format: :int64
-        property :avatar, type: :object, '$ref' => :Avatar
-    end
+  inherit_schema :UserCreate, :UserBase, required: [:email, :name],
+                 description: 'User model immutable after creation part part' do
+
+    property :email, type: :string, description: 'User email'
+  end
+
+  inherit_schema :UserPreview, :UserCreate, required: [:id], description: 'Users preview for a feed' do
+    property :id, type: :integer, description: 'User id'
+    property :membership, type: :string, enum: User.memberships.keys, description: 'Membership status.'
+  end
+
+  inherit_schema :User, :UserPreview, description: 'Full User data model' do
+    property :stats, type: :jsonb, '$ref' => :UserStats, description: 'User statistics'
+    property :user_profile, type: :UserProfile, description: 'User full profile'
+
+    array :bought_items, :Item, description: "Bought Items with attributes"
+  end
+
+  inherit_schema :UserAdminView, :UserPreview,
+                 description: 'Full User data model with admin hidden  comment in jsonb' do
+
+    property :stats, type: :jsonb, '$ref' => :UserStatsWithHiddenAttribute, description: 'User statistics full'
+  end
 end
-
-# somewhere else in docs: 
- 
-    swagger_schema :FileInput, description: 'Binary file creation attributes' do
-        property :upload, type: :string, format: :file,
-        description: 'Binar content of a file'
-    end
-
-    swagger_schema :Avatar, description: 'Avatar attributes',
-        required: [:id, :user_id, :meta] do
-
-        property :id, type: :integer, format: :int64, description: 'Base ID'
-        property :user_id, type: :integer, format: :int64, description: 'User id'
-        property :meta, type: :jsonb, '$ref' => :ImageMeta, description: 'Image meta'
-    end
 ```
 
 Controllers integrations

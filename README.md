@@ -35,17 +35,20 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/alekse
     - [ ] Introduce sequel adapter
     - [ ] Move activerecord to dev_dependencies and add check on any of supported ORMs presence
 - [ ] DSL improvements
+  - [ ] Full DSL description with a example models relations
   - [ ] ActiveStorage helpers for preloading
-  - [ ] Replace '$ref' => :Model, with model: :Model
+  - [x] Replace '$ref' => :Model, with type: :Model
   - [ ] Better api definitions helpers ( in body params + allowing schema to be mentioned in parameter function, right now its a pretty messed up with the blank names params e.t.c. )
 - [ ] Test coverage improvements (Cover with test all extensions related to synthetic attributes, jsonb models e.t.c.)
-  - [ ] Rethink data structures and relations
+  - [x] Rethink data structures and relations
+  - [ ] nested attributes models
   - [x] jsonb
   - [x] includes_sw
   - [ ] injectable attributes
-  - [ ] select_sw
+  - [x] select_sw
   - [ ] select_sw nested
   - [ ] synthetic attributes
+  - [x] property extended definition without '$ref'
 - [ ] Examine schema with validators and ensure no swagger-ui hacks are used anymore, swagger UI is a messed up outdated thingy, use Postman instead.
 
 ## License

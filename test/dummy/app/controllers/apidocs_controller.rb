@@ -46,6 +46,7 @@ class ApidocsController < ActionController::Base
   SWAGGERED_CLASSES = [
     ItemDoc,
     UserDoc,
+    UserProfileDoc,
     UserStatsDoc,
     ItemsApiDoc,
     UsersApiDoc,

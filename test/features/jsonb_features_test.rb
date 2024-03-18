@@ -7,7 +7,7 @@ class JsonbFeaturesTest < ActiveSupport::TestCase
   end
 
   test 'jsonb will return only fields declared in defined model when as_json used with proper model' do
-    jsonb_full = users(:frodo).as_json(:UserFullRepresentation).deep_symbolize_keys
+    jsonb_full = users(:frodo).as_json(:UserAdminView).deep_symbolize_keys
     jsonb_partial = users(:frodo).as_json(:User).deep_symbolize_keys
 
     assert(jsonb_full[:stats][:admin_comment].present?)

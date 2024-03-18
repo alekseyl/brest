@@ -5,7 +5,7 @@ class ItemsApiDoc < DocBase
       base.response 200 do
         key :description, 'Single item info'
         response_schema( required: [:item] )do
-          property :item, type: :object, '$ref' => :Item
+          property :item, type: :Item
         end
       end
     end

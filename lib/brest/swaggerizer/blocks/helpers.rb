@@ -78,6 +78,18 @@ module Swaggerizer
         end
       end
 
+      module PropertyBaseExt
+        TYPES = %i[string integer boolean object number jsonb array]
+
+        def property(name, inline_keys = nil, &block)
+          model_name = inline_keys&.dig(:type)
+          # either given types, or nil, or an array of types, either way it's not a model name
+          return super if model_name.nil? || TYPES.include?( model_name ) || model_name.is_a?(Array)
+
+         super(name, inline_keys.merge(type: :object, '$ref' => model_name ), &block)
+        end
+      end
+
       module ResponseSchema
         def response_schema(options = {}, &block)
           required = options[:required] ? { required: [*options[:required]] } : {}
@@ -91,12 +103,12 @@ module Swaggerizer
         ::Swagger::Blocks::Nodes::ResponseNode.prepend(ResponseSchema)
 
         ::Swagger::Blocks::Nodes::PropertyNode.include(TimeStamps)
-        ::Swagger::Blocks::Nodes::PropertyNode.prepend(ArrayShortCut, JSONB, SyntheticAttributes,
-          ForeignRelationAttributes, InjectableProperty)
+        ::Swagger::Blocks::Nodes::PropertyNode.prepend( ArrayShortCut, JSONB, SyntheticAttributes,
+          ForeignRelationAttributes, InjectableProperty, PropertyBaseExt)
 
         ::Swagger::Blocks::Nodes::SchemaNode.include(TimeStamps)
         ::Swagger::Blocks::Nodes::SchemaNode.prepend(ArrayShortCut, JSONB, SyntheticAttributes,
-          ForeignRelationAttributes, InjectableProperty)
+          ForeignRelationAttributes, InjectableProperty, PropertyBaseExt)
       end
     end
   end

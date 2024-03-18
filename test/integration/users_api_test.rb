@@ -84,6 +84,7 @@ class UsersApiTest < MiniApivoreTestBase
     assert_difference( -> { User.count } ) {
       __create_user( OK, _data: { user: { name: 'Bilbo', email: 'blb@bag.io', membership: :gold } })
     }
+    # membership param is not editable by user
     assert_equal( data_os.user.membership, 'basic' )
     assert_equal( data_os.user.email, 'blb@bag.io' )
     assert_equal( data_os.user.name, 'Bilbo' )
