@@ -1,4 +1,4 @@
-class UserProfile < ApplicationRecord
+class Avatar < ApplicationRecord
   # Rails style guided+
   #-------------------- 1. includes and extend --------------
   #-------------------- 2. default scope --------------------
@@ -7,8 +7,8 @@ class UserProfile < ApplicationRecord
   #-------------------- 6. enums ----------------------------
   #-------------------- 7. scopes ---------------------------
   #-------------------- 8. has and belongs ------------------
-  belongs_to :user, inverse_of: :user_profile
-  has_many :avatars, inverse_of: :user_profile
+  belongs_to :user_profile, inverse_of: :avatars
+  has_one :user, through: :user_profile, inverse_of: :avatars
   #-------------------- 9. accept nested macros  ------------
   #-------------------- 10. validation ----------------------
   #-------------------- 11. before/after callbacks ----------

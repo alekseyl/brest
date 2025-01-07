@@ -22,7 +22,7 @@ module Swaggerizer::Parameters
     values.all? { |el| (el == "" || el.nil? || el == {}) }
   end
 
-  # clearing blank objects from params, be very carefully about this,
+  # clearing blank objects from params, be very careful about this,
   # because potentially this could block some second level clearance.
   def reject_blank(ac_params, force_to_keep = {})
     ac_params.transform_values! do |v|

@@ -17,6 +17,12 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.references :user
     end
 
+    create_table :avatars do |t|
+      t.string :img_url
+
+      t.references :user_profile
+    end
+
     create_table :admins do |t|
       t.string :name
       t.string :email

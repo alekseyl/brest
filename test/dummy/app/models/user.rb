@@ -13,7 +13,8 @@ class User < ApplicationRecord
   #-------------------- 7. scopes ---------------------------
   #-------------------- 8. has and belongs ------------------
   has_and_belongs_to_many :bought_items, class_name: :Item, join_table: :items_users
-  has_one :user_profile
+  has_one :user_profile, inverse_of: :user
+  has_many :avatars, through: :user_profile, inverse_of: :user
   #-------------------- 9. accept nested macros  ------------
   accepts_nested_attributes_for :user_profile
   #-------------------- 10. validation ----------------------

@@ -46,6 +46,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/alekse
   - [x] includes_sw
   - [ ] injectable attributes
   - [x] select_sw
+  - [x] select nested 
   - [ ] select_sw nested
   - [ ] synthetic attributes
   - [x] property extended definition without '$ref'

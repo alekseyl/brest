@@ -50,7 +50,7 @@ class ItemsApiTest < MiniApivoreTestBase
     assert_equal( error_os.messages.name, ["can't be blank"] )
   end
 
-  test 'Get items with pagination is OK bb' do
+  test 'Get items with pagination is OK' do
     ids = identify_many( :mug, :mug_1, :tshirt, :hoodie ).sort
     __get_items(OK, _query_string: { per_page: 1 })
     assert_equal(data_os.items.map(&:id), [ids.first] )

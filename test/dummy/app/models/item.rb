@@ -6,10 +6,11 @@ class Item < ApplicationRecord
   #-------------------- 5. attr related macros --------------
   # attribute :meta, StoreModels::ItemMeta.to_type
   #-------------------- 6. enums ----------------------------
-  enum code: { mug: 1, tshirt: 2, hoodie: 3 }
+  enum :code, { mug: 1, tshirt: 2, hoodie: 3 }
   #-------------------- 7. scopes ---------------------------
   scope :by_ids, -> (ids) { ids.blank? ? none : where(id: ids) }
   #-------------------- 8. has and belongs ------------------
+  has_and_belongs_to_many :users, class_name: :User, join_table: :items_users
   #-------------------- 9. accept nested macros  ------------
   #-------------------- 10. validation ----------------------
   validate :price, -> {errors.add(:price, 'Price should be positive number!') if price <= 0}

@@ -1,4 +1,5 @@
 require 'mini_apivore'
+require 'ostruct'
 
 class MiniApivoreTestBase < ActionDispatch::IntegrationTest
   include ::Warden::Test::Helpers
@@ -22,11 +23,11 @@ class MiniApivoreTestBase < ActionDispatch::IntegrationTest
   end
 
   def data_os
-    JSON.parse( response.body, object_class: OpenStruct ).data
+    JSON.parse( response.body, object_class: ::OpenStruct ).data
   end
 
   def error_os
-    JSON.parse( response.body, object_class: OpenStruct ).errors
+    JSON.parse( response.body, object_class: ::OpenStruct ).errors
   end
 
 end

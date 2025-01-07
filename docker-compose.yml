@@ -9,11 +9,11 @@ x-common-variables: &common-env
 services:
 
   db:
-    image: postgres:11
+    image: postgres:15
     ports:
       - '5431:5432'
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data-15:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: trust_me
     networks:
@@ -21,7 +21,7 @@ services:
 
   app:
     build: .
-    image: api
+    image: brest-api
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     environment:
       <<: *common-env
@@ -38,7 +38,8 @@ services:
 
 # in a real life I'm using separated docker-compose-test file for the test ENV
   test:
-    image: api-test
+    build: .
+    image: brest-api
     command: bundle exec rails test
     environment:
       <<: *common-env
@@ -57,4 +58,4 @@ networks:
     driver: bridge
 
 volumes:
-  db-data:
+  db-data-15:
