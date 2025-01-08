@@ -8,6 +8,7 @@ require_relative "brest/swaggerizer/swagger_blocks_ext"
 require_relative "brest/swaggerizer/blocks/helpers"
 require_relative "brest/swaggerizer/blocks/operations"
 require_relative "brest/nested_select"
+require_relative "brest/hash_ext"
 
 module Brest
   class Error < StandardError; end

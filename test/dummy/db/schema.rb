@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2021_10_21_033143) do
     t.integer "code", limit: 2
     t.string "name"
     t.float "price"
+    t.jsonb "payload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

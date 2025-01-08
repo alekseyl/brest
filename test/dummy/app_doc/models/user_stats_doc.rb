@@ -18,5 +18,4 @@ class UserStatsDoc < DocBase
     property :admin_comment, type: :string
   end
 
-
 end

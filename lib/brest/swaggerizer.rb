@@ -63,7 +63,7 @@ module Swaggerizer
       def permit_schemas; (@@permit_schemas ||= build_permit_schemas).freeze end
 
       # AR does not support nested select, so it would be only first level select adjustment
-      def select_schemas; (@@select_schemas ||= build_select_schemas).freeze end
+      def select_schemas; (@@select_schemas ||= build_select_schemas ).freeze end
 
       def swagger; @@swagger end
 
@@ -91,15 +91,67 @@ module Swaggerizer
 
       # select schemas will include :id even if it wasn't described in the schema,
       # because otherwise it might break relations
+      #
+      # as_json_schemas expected structure:
+      #  :Model => {
+      #    :only => [
+      #        [0] :name
+      #     ],
+      #     :include => {
+      #          :jsonb_model => {
+      #              :only => [
+      #                   [0] :address,
+      #                   [1] :zip_code,
+      #               ]
+      #           },
+      #           :nested_model => {
+      #               :only => [
+      #                   [0] :bio
+      #               ],
+      #               :include => ...
+      #             }
+      #         }
+      # Expected output:
+      # { Model: [ :id, :name, :jsonb_model, nested_model: [ :bio, deeper_model: [...] ] ] }
       def build_select_schemas
-        as_json_schemas.each_with_object({}) do |(k, v), sum|
-          sum[k] = [*v[:only], *(v[:include]&.keys&.select { |ik| jsonb_attributes[ik] })]
-            .reject { |attr| synthetic_attr?(attr, k) }
-        end.transform_values! { |v| v.include?(:id) ? v : v << :id }
+        as_json_schemas.each_with_object({}) do |(model_name, structure), sum|
+          sum[model_name] = build_nested_select_schema(structure)
+            .reject { |attr| synthetic_attr?(attr, model_name) }
+          # TODO named pkey improvement goes here.
+        end.transform_values! { |select_attributes| (select_attributes << :id).tap(&:uniq!) }
+      end
+
+      # nested_models_attributes_structure expected structure:
+      #    :only => [
+      #        [0] :name
+      #     ],
+      #     :include => {
+      #          :jsonb_model => {
+      #              :only => [
+      #                   [0] :address,
+      #                   [1] :zip_code,
+      #               ]
+      #           },
+      #           :nested_model => {
+      #               :only => [
+      #                   [0] :bio
+      #               ],
+      #               :include => ...
+      #             }
+      #         }
+      # Expected output:
+      # [ :name, :jsonb_model, nested_model: [ :bio, deeper_model: [...] ] ]
+      def build_nested_select_schema(attributes_and_nested_models_structure)
+        jsonb_models, nested_models  = attributes_and_nested_models_structure[:include]
+          &.partition { |attr_name, _structure| jsonb_attributes[attr_name] }&.map(&:to_h)
+
+        [*attributes_and_nested_models_structure[:only],
+          *jsonb_models&.keys,
+          *nested_models&.map { |attr_name, model_structure| { attr_name => build_nested_select_schema(model_structure) } }]
       end
 
       def build_includes_schemas
-        as_json_schemas.select { |_k, v| v[:include] }
+        as_json_schemas.select { |_model_name, structure| structure[:include] }
           .transform_values { |v| compact_hash(build_single_include_schema(v[:include])) }
       end
 

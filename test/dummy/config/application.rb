@@ -49,4 +49,3 @@ module BrestTest
 end
 
 require 'ext/exception_ext'
-require 'ext/hash_ext'

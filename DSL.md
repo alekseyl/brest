@@ -1,9 +1,9 @@
 # Brest DSL Ideology
 
-Some time ago I dug an approach for building medium sized REAT-API application: [Code-Test-Document](https://medium.com/@leshchuk/code-test-document-9b79921307a5)
+Some time ago I dug an approach for building medium sized REST-API application: [Code-Test-Document](https://medium.com/@leshchuk/code-test-document-9b79921307a5)
 
-For some time I was building a set of helpers around different libraries implementing that approach which brought me at the and even further. 
-Why not improve a performance also. Not only for the programmers but also for the application itself. 
+For some time I was building a set of helpers around different libraries implementing that approach. 
+And I started thinking about improving performance not only for the programmers, but also for the application itself. 
 See the idea of partial objects instantiation: [Rails nitro-fast collection rendering with PostgreSQL](https://medium.com/@leshchuk/rails-nitro-fast-collection-rendering-with-postgresql-a5fb07cc215f)
 
 I'm strongly suggest for you to read both of those articles first to get the basic ideas of what are the purpose and benefits. 
@@ -148,7 +148,7 @@ Controllers integrations
 ```
 
 # DSL features
-We have 5 major DSL improvements for a swagger-blocks: **jsonb** flag, **inherit_schema** helper, **virtual/inject** attribute setting, **synthetic** attribute.
+Brest has 5 major DSL improvements for a swagger-blocks: **jsonb** flag, **inherit_schema** helper, **virtual/inject** attribute setting, **synthetic** attribute.
 
 ## inherit_schema
 During swagger schemas definitions pretty soon you will face a need of DRYing your models, 

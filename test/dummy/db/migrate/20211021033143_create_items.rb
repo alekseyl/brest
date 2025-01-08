@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :code, limit: 2
       t.string :name
       t.float :price, precision: 8, scale: 2
+      t.jsonb :payload
 
       t.timestamps
     end

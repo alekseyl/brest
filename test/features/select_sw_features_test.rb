@@ -17,4 +17,21 @@ class SelectSwFeaturesTest < ActiveSupport::TestCase
     assert_equal(user.dig("user_profile", "address"), "Hole in the middle of Shire" )
   end
 
+  test "as_json works with clear jsonb columns" do
+    item_json = items(:mug_1).as_json(:Item)
+    assert_equal(item_json.dig("payload", "full_description"), "Just a beer mug")
+  end
+
+  test "select_sw works with nested model definition" do
+    user_preview_json = User.includes_sw(:UserFullPreview)
+                            .select_sw(:UserFullPreview)
+                            .find(identify(:frodo)).as_json(:UserFullPreview)
+
+    assert_nil( user_preview_json.dig("bought_items", 0, "payload") )
+
+    user_full_json = User.includes_sw(:User).select_sw(:User).find(identify(:frodo)).as_json(:User)
+
+    assert_equal( user_full_json.dig("bought_items").map{ _1.dig("payload", "short_description") }.tally,
+                ["THE MUG!", "mug 1"].tally)
+  end
 end

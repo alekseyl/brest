@@ -5,8 +5,8 @@ class UserDoc < DocBase
   # UserCreate   UserUpdate
   #    |
   # UserPreview
-  #   |
-  # User
+  #   |      \
+  # User    UserFullPreview
   #   |
   # UserAdminView
 
@@ -27,6 +27,10 @@ class UserDoc < DocBase
   inherit_schema :UserPreview, :UserCreate, required: [:id], description: 'Users preview for a feed' do
     property :id, type: :integer, description: 'User id'
     property :membership, type: :string, enum: User.memberships.keys, description: 'Membership status.'
+  end
+
+  inherit_schema :UserFullPreview, :UserPreview, required: [:id], description: 'Users preview for a extended feed' do
+    array :bought_items, :ItemPreview, description: "Bought Items previews"
   end
 
   inherit_schema :User, :UserPreview, description: 'Full User data model' do

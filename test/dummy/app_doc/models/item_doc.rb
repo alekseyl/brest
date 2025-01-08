@@ -14,7 +14,11 @@ class ItemDoc < DocBase
     property :name, type: :string, description: 'Item name'
   end
 
-  inherit_schema :Item, :ItemInput, required: [:id], description: 'Item data model' do
+  inherit_schema :ItemPreview, :ItemInput, required: [:id], description: 'Item preview' do
     property :id, type: :integer, description: 'Item id'
+  end
+
+  inherit_schema :Item, :ItemPreview, required: [:id], description: 'Item full data model' do
+    property :payload, type: :jsonb, '$ref' => :ItemPayload, description: 'Item payload'
   end
 end

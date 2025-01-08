@@ -46,5 +46,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'warden'
   spec.add_development_dependency 'rails_sql_prettifier'
   spec.add_development_dependency 'bullet'
+  spec.add_development_dependency 'amazing_print'
 
 end

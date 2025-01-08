@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   #-------------------- 3. inner classes --------------------
   #-------------------- 5. attr related macros --------------
   # attribute :meta, StoreModels::ItemMeta.to_type
+  # attribute :payload, StoreModels::ItemPayload.to_type
   #-------------------- 6. enums ----------------------------
   enum :code, { mug: 1, tshirt: 2, hoodie: 3 }
   #-------------------- 7. scopes ---------------------------

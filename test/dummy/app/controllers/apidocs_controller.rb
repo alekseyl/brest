@@ -44,6 +44,7 @@ class ApidocsController < ActionController::Base
 
   # A list of all classes that have swagger_* declarations.
   SWAGGERED_CLASSES = [
+    ItemPayloadDoc,
     ItemDoc,
     UserDoc,
     UserProfileDoc,
