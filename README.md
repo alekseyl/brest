@@ -50,6 +50,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/alekse
   - [x] jsonb does not work without store model!
 - [ ] Test coverage improvements (Cover with test all extensions related to synthetic attributes, jsonb models e.t.c.)
   - [x] Rethink data structures and relations
+  - [ ] add appraisal
   - [x] jsonb
   - [x] includes_sw
   - [ ] injectable attributes
