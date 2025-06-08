@@ -9,7 +9,9 @@ module Swaggerizer
     included do
       include AsJsonSwaggerized
 
-      scope :select_sw, ->(sw_model_name) { select(*Swaggerizer.get_select_schema_with_relations(sw_model_name)) }
+      scope :select_sw, ->(sw_model_name) {
+        select(*Swaggerizer.get_select_schema_with_relations(sw_model_name))
+      }
 
       scope :includes_sw, ->(sw_model_name) {
         Swaggerizer.includes_schemas[sw_model_name].blank? ? nil # rubocop:disable Style/MultilineTernaryOperator
@@ -62,7 +64,6 @@ module Swaggerizer
 
       def permit_schemas; (@@permit_schemas ||= build_permit_schemas).freeze end
 
-      # AR does not support nested select, so it would be only first level select adjustment
       def select_schemas; (@@select_schemas ||= build_select_schemas ).freeze end
 
       def swagger; @@swagger end

@@ -7,8 +7,10 @@ class MiniApivoreTestBase < ActionDispatch::IntegrationTest
 
   init_swagger('/apidocs.json', ApplicationRecord.swagger )
 
-  # swagger checker created once per class, but since we using one definition
-  # for all we need redefine original swagger_checker
+  # swagger checker initialized once per init_swagger call,
+  # but when you are testing one schema -- you can inherit from this class only ones,
+  # and check resources in dedicated classes.
+  # In that case you need redefine original swagger_checker, to map to exact
   def swagger_checker; SWAGGER_CHECKERS[MiniApivoreTestBase] end
 
   def check_route(verb, path, expected_response_code, **params)

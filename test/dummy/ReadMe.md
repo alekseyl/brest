@@ -6,6 +6,7 @@ It's purpose to cover all DSL features provided by brest.
 # Setting up a dummy test application nuances
 
 Skipped the Rails::TestUnitRailtie via  
+
 ```ruby
 require "rails/test_unit/railtie"
 ``` 

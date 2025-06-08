@@ -51,5 +51,4 @@ class SelectNestedFeaturesTest < ActiveSupport::TestCase
     assert_equal( user.avatars, [avatars(:frodo_avatar)])
     assert_not_nil( user.avatars.first.user_profile_id)
   end
-
 end

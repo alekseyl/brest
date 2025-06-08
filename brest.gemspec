@@ -34,8 +34,9 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "swagger-blocks", "~> 3.0"
   spec.add_dependency "activerecord", ">= 6.1"
+  spec.add_dependency "nested_select", ">= 0.4.4"
 
-  spec.add_development_dependency "mini-apivore"
+  spec.add_development_dependency "mini-apivore", ">= 1.0.1"
   spec.add_development_dependency "appraisal"
   spec.add_development_dependency "minitest-rails"
   spec.add_development_dependency "rails", ">= 6.1"

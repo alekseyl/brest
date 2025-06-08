@@ -66,9 +66,7 @@ class UsersApiTest < MiniApivoreTestBase
     assert_equal( frodo.id, data_os.user.id )
     assert_equal( frodo.name, data_os.user.name )
     assert_equal( frodo.email, data_os.user.email )
-
   end
-
 
   test 'UPDATE user OK and only uses params of the UserUpdate model' do
     frodo = users(:frodo)

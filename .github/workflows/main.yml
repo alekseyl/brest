@@ -1,11 +1,6 @@
-name: Ruby
+name: CI
 
-on:
-  push:
-    branches:
-      - master
-
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   build:
@@ -13,8 +8,7 @@ jobs:
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
-        ruby:
-          - '3.1.4'
+        ruby: ["3.2", "3.3", "3.4"]
 
     steps:
     - uses: actions/checkout@v3
