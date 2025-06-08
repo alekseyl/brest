@@ -11,4 +11,5 @@ default: &default
 
 test:
   <<: *default
+  # matches DB_NAME in github-ci
   database: brest_test
